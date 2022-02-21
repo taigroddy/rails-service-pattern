@@ -1,0 +1,85 @@
+require 'rails_helper'
+
+RSpec.describe <%= class_name -%>Contract do
+  subject(:contract) { described_class.new }
+
+  context 'when the foo is not an expected value' do
+    it {
+      expect(
+        contract.call({}).errors.to_h[:foo]
+      ).to eq(['is missing'])
+    }
+
+    it {
+      expect(
+        contract.call({ foo: 'foo' }).errors.to_h[:foo]
+      ).to be_blank
+    }
+
+    it {
+      expect(
+        contract.call({ foo: '' }).errors.to_h[:foo]
+      ).to eq(['must be filled'])
+    }
+
+    it {
+      expect(
+        contract.call({ foo: nil }).errors.to_h[:foo]
+      ).to eq(['must be filled'])
+    }
+
+    it {
+      expect(
+        contract.call({ foo: 2 }).errors.to_h[:foo]
+      ).to eq(['must be a string'])
+    }
+  end
+
+  context 'when the baz is not an expected value' do
+    it {
+      expect(
+        contract.call({}).errors.to_h[:baz]
+      ).to be_blank
+    }
+
+    it {
+      expect(
+        contract.call({ baz: 'baz' }).errors.to_h[:baz]
+      ).to be_blank
+    }
+
+    it {
+      expect(
+        contract.call({ baz: '' }).errors.to_h[:baz]
+      ).to eq(['must be filled'])
+    }
+
+    it {
+      expect(
+        contract.call({ baz: nil }).errors.to_h[:baz]
+      ).to eq(['must be filled'])
+    }
+
+    it {
+      expect(
+        contract.call({ baz: 2 }).errors.to_h[:baz]
+      ).to eq(['must be a string'])
+    }
+  end
+
+  context 'when the params have the right values' do
+    it {
+      expect(
+        contract.call({ foo: 'foo' }).errors
+      ).to be_blank
+    }
+
+    it {
+      expect(
+        contract.call({ foo: 'foo', baz: 'baz' }).errors
+      ).to be_blank
+    }
+  end
+
+  pending "add some examples to (or delete) #{__FILE__}"
+end

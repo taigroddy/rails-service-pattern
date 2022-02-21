@@ -1,0 +1,6 @@
+class <%= class_name -%>Contract < ApplicationContract
+  params do
+    required(:attr_1).filled(:string)
+    optional(:attr_2).filled(:string)
+  end
+end

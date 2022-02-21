@@ -1,0 +1,33 @@
+require 'rails_helper'
+
+RSpec.describe <%= class_name -%>Service, type: :service do
+  subject(:service) { described_class.call(params: params) }
+
+  let(:params) { { attr_1: "Avengers", attr_2: "Endgame" } }
+
+  describe 'service failure' do
+    context "when params are not valid" do
+      it 'fails when params are empty' do
+        params = {}
+
+        expect(service).to be_failure
+      end
+
+      it 'fails when attr_1 not provided' do
+        params.delete(:attr_1)
+
+        expect(service).to be_failure
+      end
+    end
+
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
+
+  describe 'service success' do
+    it "should be success when params are valid" do
+      expect(service).to be_success
+    end
+
+    pending "add some examples to (or delete) #{__FILE__}"
+  end
+end

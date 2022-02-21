@@ -1,0 +1,8 @@
+Description:
+    Validation contract generator
+
+Example:
+    rails generate contract Thing
+
+    This will create:
+        app/contract/thing_contract.rb

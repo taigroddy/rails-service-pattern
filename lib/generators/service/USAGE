@@ -1,0 +1,10 @@
+Description:
+    Generator to create the services with their contract and spec
+
+Example:
+    rails generate service Thing method1 method2 method3
+
+    This will create:
+        app/services/thing_service
+        app/services/thing_contract
+        spec/services/thing_service_spec
